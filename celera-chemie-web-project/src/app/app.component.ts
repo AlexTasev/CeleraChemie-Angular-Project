@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'cc-app',
+  selector: 'app-celera-chemie',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
