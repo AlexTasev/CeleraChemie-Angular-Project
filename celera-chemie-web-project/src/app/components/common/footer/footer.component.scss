@@ -1,0 +1,41 @@
+footer section {
+  background-color: black;
+  overflow: hidden;
+}
+
+p {
+  overflow: hidden;
+}
+
+.footer-contacts {
+  display: inline-block;
+  padding-top: 3%;
+  width: 20%;
+  margin-left: 10%;
+  background-color: black;
+}
+
+.country-name {
+  color: rgb(0, 101, 126);
+}
+
+.footer-contacts p {
+  margin-top: 3%;
+  font-size: 62%;
+  line-height: 1;
+  color: rgb(0, 101, 126);
+  word-spacing: 0.1em;
+}
+
+.footer-contacts p u {
+  color: rgb(0, 101, 126);
+  font-size: 120%;
+}
+
+.author p {
+  padding-top: 1%;
+  text-align: center;
+  background-color: black;
+  font-size: 80%;
+  color: rgb(0, 101, 126);
+}
