@@ -3,33 +3,30 @@ footer section {
   overflow: hidden;
 }
 
-p {
-  overflow: hidden;
-}
-
 .footer-contacts {
   display: inline-block;
   padding-top: 3%;
   width: 20%;
   margin-left: 10%;
   background-color: black;
+
+  p {
+    overflow: hidden;
+    margin-top: 3%;
+    font-size: 62%;
+    line-height: 1;
+    color: rgb(0, 101, 126);
+    word-spacing: 0.1em;
+
+    u {
+      color: rgb(0, 101, 126);
+      font-size: 120%;
+    }
+  }
 }
 
 .country-name {
   color: rgb(0, 101, 126);
-}
-
-.footer-contacts p {
-  margin-top: 3%;
-  font-size: 62%;
-  line-height: 1;
-  color: rgb(0, 101, 126);
-  word-spacing: 0.1em;
-}
-
-.footer-contacts p u {
-  color: rgb(0, 101, 126);
-  font-size: 120%;
 }
 
 .author p {
@@ -38,4 +35,5 @@ p {
   background-color: black;
   font-size: 80%;
   color: rgb(0, 101, 126);
+  padding-bottom: 3rem;
 }

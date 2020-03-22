@@ -42,7 +42,7 @@
           height: 100%;
           z-index: 1003;
           background: #000000;
-          overflow: hidden;
+          overflow: hidden !important;
         }
         .spinner div:first-child {
           display: block;
@@ -82,7 +82,7 @@
           animation: spin 1.5s linear infinite;
         }
       </style>
-      <div id="nb-global-spinner" class="spinner">
+      <div id="nb-global-spinner" class="spinner" style="overflow: hidden !important;">
         <div class="blob blob-0"></div>
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
