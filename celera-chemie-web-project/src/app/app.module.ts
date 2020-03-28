@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -8,31 +7,25 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { FooterComponent } from './components/common/footer/footer.component';
-import { LanguageComponent } from './components/common/language/language.component';
-import { HeaderComponent } from './components/common/header/header.component';
+import { PagesModule } from './pages/pages.module';
+import { ComponentsModule } from './components/components.module';
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    HomePageComponent,
-    FooterComponent,
-    LanguageComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    PagesModule,
+    ComponentsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: createTranslateLoader,
+        useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
     }),

@@ -1,41 +1,37 @@
 <nav class="web-site-header">
-  <a routerLink="/" class="nav-link-left">
-    <img
-      src="../../../../assets/images/celera-logo.png"
-      class="logo"
-      alt="Celera-Chemie"
-    />
+  <a [routerLink]="['/']" class="nav-link-left">
+    <img src="../../../../assets/images/celera-logo.png" class="logo" alt="Celera-Chemie" />
   </a>
   <div class="navigation-buttons">
-    <a routerLink="/products" class="nav-link-right">
-      Products
+    <a [routerLink]="['/products']" class="nav-link-right">
+      {{ 'nav.products' | translate }}
     </a>
-    <a routerLink="/user/profile/:userId" class="nav-link-right">
-      Profile
+    <a [routerLink]="['/user/profile/:userId']" class="nav-link-right">
+      {{ 'nav.profile' | translate }}
     </a>
-    <a routerLink="/contacts" class="nav-link-right">
-      Contacts
+    <a [routerLink]="['/contacts']" class="nav-link-right">
+      {{ 'nav.contacts' | translate }}
     </a>
-    <a routerLink="/about" class="nav-link-right">
-      About us
+    <a [routerLink]="['/about']" class="nav-link-right">
+      {{ 'nav.about' | translate }}
     </a>
-    <a routerLink="/certificates" class="nav-link-right">
-      Certificates
+    <a [routerLink]="['/certificates']" class="nav-link-right">
+      {{ 'nav.certificates' | translate }}
     </a>
-    <a routerLink="/product/create" class="nav-link-right">
-      New Product
+    <a [routerLink]="['/product/create']" class="nav-link-right">
+      {{ 'nav.newProduct' | translate }}
     </a>
-    <a routerLink="/users" class="nav-link-right">
-      All Users
+    <a [routerLink]="['/users']" class="nav-link-right">
+      {{ 'nav.allUsers' | translate }}
     </a>
-    <a routerLink="/login" class="nav-link-right">
-      Login
+    <a [routerLink]="['/login']" class="nav-link-right">
+      {{ 'nav.login' | translate }}
     </a>
-    <a routerLink="/register" class="nav-link-right">
-      Register
+    <a [routerLink]="['/register']" class="nav-link-right">
+      {{ 'nav.register' | translate }}
     </a>
     <a href="/" class="nav-link-right">
-      Logout
+      {{ 'nav.logout' | translate }}
     </a>
   </div>
 </nav>
