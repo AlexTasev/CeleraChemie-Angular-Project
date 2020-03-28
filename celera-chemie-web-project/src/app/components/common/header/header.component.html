@@ -30,7 +30,7 @@
     <a [routerLink]="['/register']" class="nav-link-right">
       {{ 'nav.register' | translate }}
     </a>
-    <a href="/" class="nav-link-right">
+    <a href="/" class="nav-link-right" (click)="logout()">
       {{ 'nav.logout' | translate }}
     </a>
   </div>

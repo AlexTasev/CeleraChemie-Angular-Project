@@ -2,6 +2,19 @@ import { User } from '../../models/user.model';
 import { BehaviorSubject } from 'rxjs';
 
 export class Store {
+  private _selectedLanguage: string;
+
+  selectedLanguage$: BehaviorSubject<string> = new BehaviorSubject(this.selectedLanguage);
+
+  get selectedLanguage(): string | '' {
+    return this._selectedLanguage;
+  }
+
+  set selectedLanguage(language: string) {
+    this.selectedLanguage$.next(language);
+    this._selectedLanguage = language;
+  }
+
   get token(): string | null {
     return localStorage.getItem('token') || null;
   }
