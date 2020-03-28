@@ -10,7 +10,7 @@ The Administrator has full access to the system and permissions to administer al
 After registration and subsequent successful Login to the system, a registered user is authorized to access products related information. This includes detailed product information, a product catalogue and/ or price list available to download and used by the customer. The registered user could edit his account information at any time. If the customer decides that Celera-Chemie services are no longer required, the user profile could be permanently deleted on demand. The registered user is permitted to view the following sections:
 "Products" -> "Download Catalogue" -> "Visit Official Website"; "User Profile" -> "Edit Profile" / "Delete Profile".
 
-The guest user has access to general information about the company. The following pages are public and visible to any visitor on Celera Chemie Ltd. company web site : "Contacts", "About us", "Certificates", "Register", "Login".
+The guest user has access to general information about the company. The following pages are public and visible to any visitor on Celera Chemie Ltd. company web site: "Home",  "Contacts", "About us", "Certificates", "Register", "Login".
 
 The application is built entirely on latest JavaScript technologies: Angular (client side) and node.js (server side). All rights of their respective owners are reserved.
 
