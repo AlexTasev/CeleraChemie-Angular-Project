@@ -12,7 +12,7 @@ After registration and subsequent successful Login to the system, a registered u
 
 The guest user has access to general information about the company. The following pages are public and visible to any visitor on Celera Chemie Ltd. company web site : "Contacts", "About us", "Certificates", "Register", "Login".
 
-The application is built entirely on latest JavaScript technologies: React.js (client side) and node.js (server side). All rights of their respective owners are reserved.
+The application is built entirely on latest JavaScript technologies: Angular (client side) and node.js (server side). All rights of their respective owners are reserved.
 
 ## REST API and DB
 The repository of Celera Chemie REST API is available at: https://github.com/AlexTasev/ExpressJS-CeleraChemie.
