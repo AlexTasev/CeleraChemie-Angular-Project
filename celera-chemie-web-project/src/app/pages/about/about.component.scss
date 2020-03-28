@@ -1,0 +1,27 @@
+.about-page {
+  background-color: black;
+  display: block;
+  div {
+    text-align: center;
+    font-size: 90%;
+  }
+  h1 {
+    text-align: center;
+    font-size: 150%;
+    text-transform: uppercase;
+    margin-bottom: 2%;
+  }
+  p {
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 2rem;
+    font-size: 90%;
+  }
+}
+
+#portrait {
+  width: 15%;
+  margin-left: 42.5%;
+  margin-top: 4rem;
+  margin-bottom: 2%;
+}
