@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Store } from 'src/app/@core/services/store.service';
 
 @Component({
   selector: 'app-language',
@@ -10,13 +11,15 @@ export class LanguageComponent implements OnInit {
   public languages: string[] = ['en', 'bg', 'gr', 'ro'];
   public currentLanguage = 'en';
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private store: Store) {
     const browserLang = translate.getBrowserLang();
     const languageSelected = localStorage.getItem('language');
     translate.addLangs(this.languages);
 
     if (languageSelected) {
       this.currentLanguage = languageSelected;
+      this.store.selectedLanguage = this.currentLanguage;
+      console.log(languageSelected);
     } else {
       translate.use(browserLang.match(/bg|ro|gr|en|/) ? browserLang : 'en');
     }
@@ -28,6 +31,7 @@ export class LanguageComponent implements OnInit {
   changeLanguage(selectedLanguage: string) {
     localStorage.setItem('language', selectedLanguage);
     this.currentLanguage = selectedLanguage;
+    this.store.selectedLanguage = this.currentLanguage;
     this.translate.use(this.currentLanguage);
   }
 }

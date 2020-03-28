@@ -1,0 +1,48 @@
+<section class="container-contacts">
+  <section class="contact-page">
+    <article class="contacts-general">
+      <p>
+        {{ 'contacts.companyName' | translate }}
+      </p>
+      <p>
+        {{ 'contacts.address' | translate }}
+      </p>
+      <p>
+        {{ 'contacts.phone' | translate }}
+      </p>
+      <p>
+        {{ 'contacts.email' | translate }}
+      </p>
+    </article>
+    <div class="contacts-persons">
+      <p>
+        {{ 'contacts.personOne.name' | translate }}
+      </p>
+      <p>
+        Mobile:
+        {{ 'contacts.personOne.phone' | translate }}
+      </p>
+      <p>
+        Email:
+        {{ 'contacts.personOne.email' | translate }}
+      </p>
+      <p>
+        <br />
+        {{ 'contacts.personTwo.name' | translate }}
+      </p>
+      <p>
+        Mobile:
+        {{ 'contacts.personTwo.phone' | translate }}
+      </p>
+      <p>
+        Email:
+        {{ 'contacts.personTwo.email' | translate }}
+      </p>
+    </div>
+  </section>
+  
+  <div *ngIf="locationImg" class="location-image">
+    <img src="{{locationImg}}" alt="Show on the map" />
+  </div>
+
+</section>
