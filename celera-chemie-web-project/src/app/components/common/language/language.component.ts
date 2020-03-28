@@ -16,7 +16,7 @@ export class LanguageComponent implements OnInit {
     translate.addLangs(this.languages);
 
     if (languageSelected) {
-      translate.use(languageSelected);
+      this.currentLanguage = languageSelected;
     } else {
       translate.use(browserLang.match(/bg|ro|gr|en|/) ? browserLang : 'en');
     }
