@@ -26,7 +26,7 @@ npm / yarn install
 ## Run the web server
 The app uses nodemon. To run the web server type in terminal from Server-Celera-Chemie the following:
 ```
-nodemon index
+node index
 ```
 ## Run the Angular app
 The app uses Angular on client side. To run the Angular app type in terminal from celera-chemie-web-project directory the following:
