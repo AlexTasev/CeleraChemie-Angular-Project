@@ -1,0 +1,100 @@
+.form {
+  width: 100%;
+  padding-bottom: 5%;
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+  h1 {
+    text-align: center;
+    color: rgb(0, 101, 126);
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2%;
+  }
+  form {
+    display: grid;
+    max-width: 480px;
+    margin: 0 auto;
+    input[type='text'],
+    input[type='email'],
+    input[type='url'],
+    input[type='password'] {
+      padding: 0.5rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid wheat;
+      color: black;
+      min-width: 430px;
+      max-width: 470px;
+    }
+    button[type='submit'] {
+      min-width: 430px;
+      max-width: 470px;
+      cursor: pointer;
+      margin: 0 auto;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-top: 30px;
+      border-radius: 10px;
+      border: 1px solid wheat;
+      background: rgb(0, 101, 126);
+      color: white;
+      font-size: 18px;
+      &:hover {
+        border: 1px solid #455859;
+        background: rgb(0, 101, 0);
+        color: white;
+        text-transform: uppercase;
+      }
+    }
+    select {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid wheat;
+      color: black;
+      padding-bottom: 0.5rem;
+    }
+    option {
+      color: black;
+    }
+    textarea {
+      padding: 0.5rem;
+      height: 25rem;
+      border-radius: 0.5rem;
+      border: 1px solid wheat;
+      color: black;
+      font-size: 0.9rem;
+    }
+    .error {
+      margin-bottom: 2rem;
+      color: red;
+      max-width: 430px;
+    }
+    .deleteBtn {
+      display: grid;
+      width: 480px;
+      padding-top: 30px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid wheat;
+      background: rgb(0, 101, 126);
+      color: white;
+      font-size: 18px;
+      margin-top: 10%;
+      &:hover {
+        border: 1px solid #455859;
+        background: rgb(212, 0, 0);
+        color: white;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+label {
+  overflow: hidden;
+  padding: 1rem 0 1rem 0;
+  margin-top: 1rem;
+}
