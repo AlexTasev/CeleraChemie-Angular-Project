@@ -9,13 +9,15 @@ import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { CommonModule } from '@angular/common';
 import { CertificatesComponent } from './certificates/certificates.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [HomePageComponent, AboutComponent, ContactsComponent, CertificatesComponent],
+  declarations: [HomePageComponent, AboutComponent, ContactsComponent, CertificatesComponent, RegisterComponent, LoginComponent],
   imports: [
     HttpClientModule,
     CommonModule,
