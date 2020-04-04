@@ -6,7 +6,7 @@
     <a [routerLink]="['/products']" *ngIf="isAuthenticated" class="nav-link-right">
       {{ 'nav.products' | translate }}
     </a>
-    <a [routerLink]="['/user/profile/:userId']" *ngIf="isAuthenticated" class="nav-link-right">
+    <a [routerLink]="['/user/profile']" *ngIf="isAuthenticated" class="nav-link-right">
       {{ 'nav.profile' | translate }}
     </a>
     <a [routerLink]="['/contacts']" class="nav-link-right">

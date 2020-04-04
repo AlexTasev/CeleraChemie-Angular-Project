@@ -7,6 +7,8 @@ import { ContactsComponent } from './pages/contacts/contacts.component';
 import { CertificatesComponent } from './pages/certificates/certificates.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
+import { AuthGuard } from './@core/auth/auth.guard';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -14,6 +16,7 @@ const routes: Routes = [
   { path: 'certificates', component: CertificatesComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'user/profile', component: UserProfileComponent },
   { path: '', component: HomePageComponent, pathMatch: 'full' },
 ];
 
