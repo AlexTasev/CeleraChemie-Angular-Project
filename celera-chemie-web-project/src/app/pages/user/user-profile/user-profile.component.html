@@ -1,0 +1,42 @@
+<section
+  class="form"
+  style="background-image: url('https://am3pap005files.storage.live.com/y4p9c7HF8GljDgi-89FCzG1F_DeoKWJxju6iaFdzzk3KjDQFSmnrR3OhYxV94aZpVwiGKupHGXz42xSiUJ1grHbZUHRxq4Loc7A0QebTn3Y6Zqg2sqdKasRDRqRf0SZJvPs3-cVnb1KTr1h5muj9xR7avoWZjMTPlcZfs0RgLcg9gtfIbiU7-5--yrSeEkj4EhtkqaYj2RaK4yn--NGZ6GTN61ujbxv-Rv9bxQ_oLGJxyQ/header.jpg?psid=1&width=1200&height=675');"
+>
+  <h1>Edit Profile</h1>
+  <form [formGroup]="form" *ngIf="form">
+    <div class="form-group">
+      <label class="form-control-label" for="email">
+        E-mail
+      </label>
+      <input type="email" formControlName="email" id="emailLogin" placeholder="Enter your e-mail" />
+      <div *ngIf="invalidNameMessage" class="error">{{invalidNameMessage}}</div>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="organization">
+        Organization
+      </label>
+      <input type="text" formControlName="organization" id="organizationRegister" placeholder="Enter your Organization" />
+      <div *ngIf="invalidOrgMsg" class="error">{{invalidOrgMsg}}</div>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="nameOfUser">
+        Name
+      </label>
+      <input type="text" formControlName="nameOfUser" id="nameRegister" placeholder="Enter your name (optional)" />
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="phoneNumber">
+        Phone Number
+      </label>
+      <input type="text" formControlName="phoneNumber" id="phoneNumberRegister"  placeholder="Enter your phone number (optional)"/>
+      <div *ngIf="invalidPhoneMsg" class="error">{{invalidPhoneMsg}}</div>
+    </div>
+    <div class="form-group">
+      <button type="submit" (click)="updateUser()">Update Profile</button>
+    </div>
+    <div class="form-group">
+      <button onmouseover="this.style.background='red'" (click)="deleteUser()">Delete Profile</button>
+    </div>
+  </form>
+</section>
+

@@ -13,6 +13,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../@core/services/auth.service';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { UserService } from '../@core/services/user.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -26,6 +28,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CertificatesComponent,
     RegisterComponent,
     LoginComponent,
+    UserProfileComponent,
   ],
   imports: [
     HttpClientModule,
@@ -40,6 +43,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
   ],
-  providers: [AuthService],
+  providers: [AuthService, UserService],
 })
 export class PagesModule {}

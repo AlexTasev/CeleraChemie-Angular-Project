@@ -5,22 +5,26 @@ import { AuthService } from 'src/app/@core/services/auth.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/@core/services/user.service';
+import { Store } from 'src/app/@core/services/store.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
   styleUrls: ['../../../common-styles/form.scss'],
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class UserProfileComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService,
+    private userService: UserService,
     private toastrService: ToastrService,
+    private store: Store,
   ) {}
-  
+
   form: FormGroup;
   private _ngDestroy$ = new Subject<void>();
+  userId: string;
 
   // validations
   isFormValid = true;
@@ -31,36 +35,50 @@ export class RegisterComponent implements OnInit, OnDestroy {
   invalidRepeatPassMsg = '';
 
   ngOnInit(): void {
-    this.initializeForm();
+    this.getCurrentUser();
   }
 
-  initializeForm() {
+  initializeForm(user) {
     this.form = this.fb.group({
-      email: ['', Validators.required],
-      organization: ['', Validators.required],
-      nameOfUser: '',
-      phoneNumber: '',
-      password: ['', Validators.required],
-      repeatPassword: ['', Validators.required],
+      email: [user.email, Validators.required],
+      organization: [user.organization, Validators.required],
+      nameOfUser: user.nameOfUser,
+      phoneNumber: user.phoneNumber,
     });
   }
 
-  registerUser() {
+  getCurrentUser() {
+    this.userId = this.store.userId;
+    this.userService
+      .getById(this.userId)
+      .pipe(takeUntil(this._ngDestroy$))
+      .subscribe((user) => this.initializeForm(user));
+  }
+
+  updateUser() {
     this.validateForm();
     const user = this.form.value;
 
     if (this.isFormValid && this.form.valid) {
-      this.authService
-        .register(user)
+      this.userService
+        .update(this.userId, user)
         .pipe(takeUntil(this._ngDestroy$))
         .subscribe(
           () => {
-            this.toastrService.success(`${this.form.value.email} registered successfully`, 'User registered');
-            this.router.navigate(['/login']);
+            this.toastrService.success(`${this.form.value.email} updated successfully`, 'User updated');
+            this.router.navigate(['/']);
           },
           (err) => this.toastrService.error(`${err.error.message}`, 'User registration failed'),
         );
     }
+  }
+
+  deleteUser() {
+    this.userService.delete(this.userId).pipe(takeUntil(this._ngDestroy$)).subscribe(() => {
+      this.toastrService.success(`${this.form.value.email} user successfully deleted`, 'User deleted');
+      this.store.clear();
+      this.router.navigate(['/']);
+    })
   }
 
   validateForm() {

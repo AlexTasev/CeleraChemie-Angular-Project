@@ -30,7 +30,7 @@
       min-width: 430px;
       max-width: 470px;
     }
-    button[type='submit'] {
+    button {
       min-width: 430px;
       max-width: 470px;
       cursor: pointer;
@@ -72,24 +72,6 @@
       margin-bottom: 2rem;
       color: red;
       max-width: 430px;
-    }
-    .deleteBtn {
-      display: grid;
-      width: 480px;
-      padding-top: 30px;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid wheat;
-      background: rgb(0, 101, 126);
-      color: white;
-      font-size: 18px;
-      margin-top: 10%;
-      &:hover {
-        border: 1px solid #455859;
-        background: rgb(212, 0, 0);
-        color: white;
-        text-transform: uppercase;
-      }
     }
   }
 }

@@ -10,7 +10,7 @@ export class APIInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (request.url.startsWith('auth') || request.url.startsWith('product')) {
+    if (request.url.startsWith('auth') || request.url.startsWith('product') || request.url.startsWith('users')) {
       const url = baseUrl + request.url;
       request = request.clone({
         url: url,
