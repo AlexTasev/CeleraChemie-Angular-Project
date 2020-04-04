@@ -19,7 +19,6 @@ export class LanguageComponent implements OnInit {
     if (languageSelected) {
       this.currentLanguage = languageSelected;
       this.store.selectedLanguage = this.currentLanguage;
-      console.log(languageSelected);
     } else {
       translate.use(browserLang.match(/bg|ro|gr|en|/) ? browserLang : 'en');
     }

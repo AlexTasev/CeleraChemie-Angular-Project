@@ -22,7 +22,7 @@ export class CertificatesComponent implements OnInit, OnDestroy {
       });
   }
 
-  getLocaleData(country) {
+  getLocaleData(country: string) {
     switch (country) {
       case 'bg':
         this.imgSrc =

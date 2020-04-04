@@ -3,10 +3,10 @@
     <img src="../../../../assets/images/celera-logo.png" class="logo" alt="Celera-Chemie" />
   </a>
   <div class="navigation-buttons">
-    <a [routerLink]="['/products']" class="nav-link-right">
+    <a [routerLink]="['/products']" *ngIf="isAuthenticated" class="nav-link-right">
       {{ 'nav.products' | translate }}
     </a>
-    <a [routerLink]="['/user/profile/:userId']" class="nav-link-right">
+    <a [routerLink]="['/user/profile/:userId']" *ngIf="isAuthenticated" class="nav-link-right">
       {{ 'nav.profile' | translate }}
     </a>
     <a [routerLink]="['/contacts']" class="nav-link-right">
@@ -18,19 +18,19 @@
     <a [routerLink]="['/certificates']" class="nav-link-right">
       {{ 'nav.certificates' | translate }}
     </a>
-    <a [routerLink]="['/product/create']" class="nav-link-right">
+    <a [routerLink]="['/product/create']" *ngIf="isAdmin" class="nav-link-right">
       {{ 'nav.newProduct' | translate }}
     </a>
-    <a [routerLink]="['/users']" class="nav-link-right">
+    <a [routerLink]="['/users']" *ngIf="isAdmin" class="nav-link-right">
       {{ 'nav.allUsers' | translate }}
     </a>
-    <a [routerLink]="['/login']" class="nav-link-right">
+    <a [routerLink]="['/login']" *ngIf="!isAuthenticated" class="nav-link-right">
       {{ 'nav.login' | translate }}
     </a>
-    <a [routerLink]="['/register']" class="nav-link-right">
+    <a [routerLink]="['/register']" *ngIf="!isAuthenticated" class="nav-link-right">
       {{ 'nav.register' | translate }}
     </a>
-    <a href="/" class="nav-link-right" (click)="logout()">
+    <a href="/" class="nav-link-right" *ngIf="isAuthenticated" (click)="logout()">
       {{ 'nav.logout' | translate }}
     </a>
   </div>

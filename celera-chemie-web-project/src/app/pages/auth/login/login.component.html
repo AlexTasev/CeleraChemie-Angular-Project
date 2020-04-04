@@ -1,0 +1,27 @@
+<section
+  class="form"
+  style="
+    background-image: url('https://am3pap003files.storage.live.com/y4pWc1itk9AtD-baxMeucFyjjsCeNSCSAu2GgMeLlNG4C3NffMR1WFF6iMpnSiYmBfEpu2FsmuUXaIqkTWUNYxcHpME1xVGOPktR0MEIUcN1IUngrn4xFfn92pBWJmRXcPLqMmNIDG2YJYC-4qAcKXr1UI6zEFXpiz9BPvRHlbO6oDnXYC2KfZMjfULnKvqzggL/welcome.png?psid=1&width=484&height=209');
+  "
+>
+  <h1>Login</h1>
+  <form [formGroup]="form" *ngIf="form">
+    <div class="form-group">
+      <label class="form-control-label" for="email">
+        E-mail
+      </label>
+      <input type="email" formControlName="email" id="emailLogin" placeholder="Enter your e-mail" />
+      <div *ngIf="invalidNameMessage" class="error">{{ invalidNameMessage }}</div>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="password">
+        Password
+      </label>
+      <input type="password" formControlName="password" id="passwordLogin" placeholder="Enter a password" />
+      <div *ngIf="invalidPasswordMsg" class="error">{{ invalidPasswordMsg }}</div>
+    </div>
+    <div class="form-group">
+      <button type="submit" (click)="loginUser()">Login</button>
+    </div>
+  </form>
+</section>
