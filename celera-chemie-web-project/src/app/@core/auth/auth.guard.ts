@@ -6,19 +6,20 @@ import {
     RouterStateSnapshot
 } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Store } from '../services/store.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(
         private readonly router: Router,
-        private authService: AuthService,
+        private store: Store
     ) { }
 
     async canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ) {
-        const isAuthenticated = await this.authService.isAuthenticated();
+        const isAuthenticated =  !!this.store.token;
 
         if (isAuthenticated) {
             // logged in so return true

@@ -7,6 +7,7 @@ import { FooterComponent } from '../components/common/footer/footer.component';
 import { LanguageComponent } from '../components/common/language/language.component';
 import { HeaderComponent } from '../components/common/header/header.component';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -15,6 +16,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [FooterComponent, LanguageComponent, HeaderComponent],
   imports: [
+    CommonModule,
     HttpClientModule,
     RouterModule,
     TranslateModule.forChild({

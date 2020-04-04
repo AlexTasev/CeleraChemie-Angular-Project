@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  isAuthenticated(): Promise<boolean> {
-    return this.http.get<boolean>('auth/authenticated').pipe(first()).toPromise();
-  }
-
   register(registerInput: User): Observable<any> {
     return this.http.post('auth/signup', registerInput);
+  }
+
+  login(loginInput): Observable<any> {
+    return this.http.post('auth/login', loginInput);
   }
 }

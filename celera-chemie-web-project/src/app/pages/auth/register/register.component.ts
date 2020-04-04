@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Store } from 'src/app/@core/services/store.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/@core/services/auth.service';
 import { takeUntil } from 'rxjs/operators';
@@ -16,10 +15,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private store: Store,
     private authService: AuthService,
     private toastrService: ToastrService,
   ) {}
+  
   form: FormGroup;
   private _ngDestroy$ = new Subject<void>();
 
@@ -33,7 +32,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeForm();
-    console.log(this.form);
   }
 
   initializeForm() {

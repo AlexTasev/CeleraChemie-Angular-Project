@@ -3,8 +3,12 @@ import { BehaviorSubject } from 'rxjs';
 
 export class Store {
   private _selectedLanguage: string;
+  private _token: string;
+  private _role: string;
 
   selectedLanguage$: BehaviorSubject<string> = new BehaviorSubject(this.selectedLanguage);
+  userToken$: BehaviorSubject<string> = new BehaviorSubject(this.token);
+  userRole$: BehaviorSubject<string> = new BehaviorSubject(this.role);
 
   get selectedLanguage(): string | '' {
     return this._selectedLanguage;
@@ -16,13 +20,15 @@ export class Store {
   }
 
   get token(): string | null {
-    return localStorage.getItem('token') || null;
+    return this._token;
   }
 
   set token(token: string) {
     if (token == null) {
       localStorage.removeItem('token');
     } else {
+      this.userToken$.next(token);
+      this._token = token;
       localStorage.setItem('token', token);
     }
   }
@@ -37,6 +43,15 @@ export class Store {
     } else {
       localStorage.setItem('_userId', id);
     }
+  }
+
+  get role(): string | null {
+    return this._token;
+  }
+
+  set role(role: string) {
+    this.userRole$.next(role);
+    this._role = role;
   }
 
   clear() {
