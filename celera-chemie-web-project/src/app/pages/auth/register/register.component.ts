@@ -2,6 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from 'src/app/@core/services/store.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/@core/services/auth.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,13 +15,16 @@ import { ToastrService } from 'ngx-toastr';
 export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private store: Store,
+    private authService: AuthService,
     private toastrService: ToastrService,
   ) {}
   form: FormGroup;
+  private _ngDestroy$ = new Subject<void>();
 
   // validations
-  isFormValid = false;
+  isFormValid = true;
   invalidNameMessage = '';
   invalidPhoneMsg = '';
   invalidOrgMsg = '';
@@ -42,33 +49,34 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   registerUser() {
     this.validateForm();
+    const user = this.form.value;
 
     if (this.isFormValid && this.form.valid) {
-      // call register service
+      this.authService
+        .register(user)
+        .pipe(takeUntil(this._ngDestroy$))
+        .subscribe(
+          () => {
+            this.toastrService.success(`${this.form.value.email} registered successfully`, 'User registered');
+            this.router.navigate(['/']);
+          },
+          (err) => this.toastrService.error(`${err.error.message}`, 'User registration failed'),
+        );
     }
   }
 
   validateForm() {
-    const {
-      email,
-      organization,
-      nameOfUser,
-      phoneNumber,
-      password,
-      repeatPassword,
-    } = this.form.value;
+    const { email, organization, phoneNumber, password, repeatPassword } = this.form.value;
 
     const emailRegex = new RegExp(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     );
 
-    const phoneNumberRegex = new RegExp(
-      /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g,
-    );
+    const phoneNumberRegex = new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g);
 
     if (!emailRegex.test(email)) {
       this.isFormValid = false;
-      this.invalidNameMessage = `${email} is not valid e-mail. Please provide correct e-mail`;
+      this.invalidNameMessage = `E-mail ${email} is not valid. Please provide correct e-mail`;
       setTimeout(() => {
         this.invalidNameMessage = '';
       }, 3000);
@@ -111,5 +119,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     clearTimeout();
+    this._ngDestroy$.next();
+    this._ngDestroy$.complete();
   }
 }
