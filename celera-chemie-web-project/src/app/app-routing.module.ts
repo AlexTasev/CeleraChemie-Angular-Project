@@ -11,6 +11,7 @@ import { UserProfileComponent } from './pages/user/user-profile/user-profile.com
 import { AuthGuard } from './@core/auth/auth.guard';
 import { AllUsersComponent } from './pages/user/all-users/all-users.component';
 import { CreateEditProductComponent } from './pages/product/create-edit-product/create-edit-product.component';
+import { ProductsAllComponent } from './pages/product/products-all/products-all.component';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'users/all', component: AllUsersComponent },
   { path: 'users/all', component: AllUsersComponent },
   { path: 'product/create', component: CreateEditProductComponent },
+  { path: 'products', component: ProductsAllComponent },
   { path: '', component: HomePageComponent, pathMatch: 'full' },
 ];
 
