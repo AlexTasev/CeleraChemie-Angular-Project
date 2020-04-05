@@ -10,6 +10,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
 import { AuthGuard } from './@core/auth/auth.guard';
 import { AllUsersComponent } from './pages/user/all-users/all-users.component';
+import { CreateEditProductComponent } from './pages/product/create-edit-product/create-edit-product.component';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -19,6 +20,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'user/profile', component: UserProfileComponent },
   { path: 'users/all', component: AllUsersComponent },
+  { path: 'users/all', component: AllUsersComponent },
+  { path: 'product/create', component: CreateEditProductComponent },
   { path: '', component: HomePageComponent, pathMatch: 'full' },
 ];
 

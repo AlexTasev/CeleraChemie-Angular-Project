@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from 'src/app/@core/services/store.service';
-import { ThrowStmt } from '@angular/compiler';
+import constants from '../../../@core/utils/constants';
 
 @Component({
   selector: 'app-login',
@@ -66,16 +66,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   validateForm() {
     const { email, password } = this.form.value;
 
-    const emailRegex = new RegExp(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    );
-
-    const phoneNumberRegex = new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g);
-
-    if (!emailRegex.test(email)) {
+    if (!constants.emailRegex.test(email)) {
       this.isFormValid = false;
       this.invalidNameMessage = `E-mail ${email} is not valid. Please provide correct e-mail`;
       setTimeout(() => {
+        this.isFormValid = true;
         this.invalidNameMessage = '';
       }, 3000);
     }
@@ -85,6 +80,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.isFormValid = false;
         this.invalidPasswordMsg = 'Password must be at least 8 characters long';
         setTimeout(() => {
+          this.isFormValid = true;
           this.invalidPasswordMsg = '';
         }, 3000);
       }

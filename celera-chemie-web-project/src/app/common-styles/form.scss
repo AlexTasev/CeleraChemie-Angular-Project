@@ -53,6 +53,10 @@
     select {
       padding: 10px;
       border-radius: 10px;
+       min-width: 430px;
+      max-width: 470px;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
       border: 1px solid wheat;
       color: black;
       padding-bottom: 0.5rem;
@@ -61,6 +65,10 @@
       color: black;
     }
     textarea {
+      min-width: 430px;
+      max-width: 470px;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
       padding: 0.5rem;
       height: 25rem;
       border-radius: 0.5rem;
