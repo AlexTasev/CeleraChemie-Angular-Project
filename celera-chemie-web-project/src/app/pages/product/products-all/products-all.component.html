@@ -1,0 +1,60 @@
+<section class="products-section" [ngStyle]="{ 'background-image': 'url(' + backgroundImg + ')' }">
+  <section class="product-selector">
+    <ul>
+      <li>
+        <button name="chemicals" (click)="selectCategory($event)">
+          {{ 'products.chemicals' | translate }}
+        </button>
+      </li>
+      <li>
+        <button name="consumables" (click)="selectCategory($event)">
+          {{ 'products.consumables' | translate }}
+        </button>
+      </li>
+      <li>
+        <button name="instruments" (click)="selectCategory($event)">
+          {{ 'products.instruments' | translate }}
+        </button>
+      </li>
+      <li>
+        <button name="glassware" (click)="selectCategory($event)">
+          {{ 'products.glassware' | translate }}
+        </button>
+      </li>
+      <li>
+        <button name="filters" (click)="selectCategory($event)">
+          {{ 'products.filters' | translate }}
+        </button>
+      </li>
+    </ul>
+  </section>
+  <section *ngFor="let product of products">
+    <section *ngIf="category" class="products-display">
+      <div class="brand-logo-url">
+        <img [src]="product.logoUrl" alt="logo" />
+      </div>
+      <div class="description">{{ product.description }}</div>
+      <div class="btn-div">
+        <a [attr.href]="product.catalogueUrl" target="_blank" rel="noopener noreferrer" class="button-user">
+          Download Catalogue
+        </a>
+        <a [attr.href]="product.brandWebSite" target="_blank" rel="noopener noreferrer" class="button-user">
+          Visit Official Website
+        </a>
+        <ng-template>
+          <!-- <a [routerLink]="['/product/edit/:id']" class="button-user" id="edit-btn">
+            Edit Product
+          </a> -->
+          <!-- <button (click)="deleteProduct()" class="button-user" id="delete-btn">
+            Delete Product
+          </button> -->
+        </ng-template>
+      </div>
+    </section>
+    <section *ngIf="!category" class="all-products-display">
+      <a class="brand-logo-url" target="_blank" rel="noopener noreferrer" [attr.href]="product.brandWebSite">
+        <img [src]="product.logoUrl" alt="logo" />
+      </a>
+    </section>
+  </section>
+</section>

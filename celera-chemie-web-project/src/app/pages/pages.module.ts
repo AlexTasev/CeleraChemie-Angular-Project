@@ -18,6 +18,7 @@ import { UserService } from '../@core/services/user.service';
 import { AllUsersComponent } from './user/all-users/all-users.component';
 import { CreateEditProductComponent } from './product/create-edit-product/create-edit-product.component';
 import { ProductService } from '../@core/services/product.service';
+import { ProductsAllComponent } from './product/products-all/products-all.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -34,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserProfileComponent,
     AllUsersComponent,
     CreateEditProductComponent,
+    ProductsAllComponent,
   ],
   imports: [
     HttpClientModule,

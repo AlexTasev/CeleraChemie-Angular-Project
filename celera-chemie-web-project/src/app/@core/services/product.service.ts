@@ -12,4 +12,12 @@ export class ProductService {
   createProduct(product: Product): Observable<any> {
     return this.http.post('product', product);
   }
+
+  getAllProducts(lang: string) {
+    return this.http.get(`product/all/${lang}`);
+  }
+
+  getAllByCategory(category: string, lang: string) {
+    return this.http.get(`product/${category}/${lang}`);
+  }
 }
