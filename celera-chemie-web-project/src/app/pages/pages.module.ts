@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../@core/services/auth.service';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { UserService } from '../@core/services/user.service';
+import { AllUsersComponent } from './user/all-users/all-users.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -29,6 +30,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RegisterComponent,
     LoginComponent,
     UserProfileComponent,
+    AllUsersComponent,
   ],
   imports: [
     HttpClientModule,

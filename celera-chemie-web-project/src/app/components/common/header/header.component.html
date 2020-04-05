@@ -21,7 +21,7 @@
     <a [routerLink]="['/product/create']" *ngIf="isAdmin" class="nav-link-right">
       {{ 'nav.newProduct' | translate }}
     </a>
-    <a [routerLink]="['/users']" *ngIf="isAdmin" class="nav-link-right">
+    <a [routerLink]="['/users/all']" *ngIf="isAdmin" class="nav-link-right">
       {{ 'nav.allUsers' | translate }}
     </a>
     <a [routerLink]="['/login']" *ngIf="!isAuthenticated" class="nav-link-right">
