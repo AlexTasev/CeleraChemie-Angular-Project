@@ -8,6 +8,10 @@ import { User } from 'src/app/models/user.model';
 export class UserService {
   constructor(private http: HttpClient) {}
 
+  getAll() {
+    return this.http.get('users');
+  }
+
   getById(id: string) {
     return this.http.get(`users/${id}`);
   }
@@ -17,6 +21,6 @@ export class UserService {
   }
 
   delete(id: string) {
-    return this.http.delete(`users/${id}`)
+    return this.http.delete(`users/${id}`);
   }
 }

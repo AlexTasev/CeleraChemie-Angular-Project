@@ -1,0 +1,29 @@
+<section class="users-section" *ngIf="users.length; else noUsers">
+  <div class="single-user" *ngFor="let user of users">
+    <div>
+      <span>Organization: </span>
+      {{ user.organization }}
+    </div>
+    <div *ngIf="user.nameOfUser">
+      <span>Name: </span>
+      {{ user.nameOfUser }}
+    </div>
+    <div *ngIf="user.phoneNumber">
+      <span>Phone number: </span>
+      {{ user.phoneNumber }}
+    </div>
+    <div>
+      <span>E-mail: </span>
+      {{ user.email }}
+    </div>
+    <button (click)="deleteUser(user._id)" class="button-user">
+      Delete User
+    </button>
+  </div>
+</section>
+
+<ng-template #noUsers>
+  <section class="users-section">
+    <h6>No Users currently registered</h6>
+  </section>
+</ng-template>
