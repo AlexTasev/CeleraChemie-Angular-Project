@@ -1,0 +1,75 @@
+<section
+  class="form"
+  style="
+    background-image: url('https://am3pap003files.storage.live.com/y4pEGvAr2dl_1V7s4OWdBCtWCTkW7fHBg4HkLf1Klm_o8AJFqRflYkoomqEmwhGLPuRHpDNtRQ8B8k58DRAa3avlTjH6PhW22xmAYLKqvY__kCcHdGadI4zAsiv6crc25tD8RJC2iL48C9rHGExK5hUmvmppGtr176yFZ6BlN_-Tyh490zfb5aWCCt6hnz1OHLd/Products-all.jpg?psid=1&width=1000&height=535');
+  "
+>
+  <h1>Create Product</h1>
+  <form [formGroup]="form" *ngIf="form">
+    <div class="form-group">
+      <label class="form-control-label" for="manufacturer">
+        Manufacturer
+      </label>
+      <input type="text" formControlName="manufacturer" placeholder="Enter manufacturer name" />
+      <div *ngIf="invalidManufacturerMsg" class="error">{{ invalidManufacturerMsg }}</div>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="description">
+        Description
+      </label>
+      <textarea type="text" formControlName="description" placeholder="Product description"></textarea>
+      <div *ngIf="invalidDescriptionMsg" class="error">{{ invalidDescriptionMsg }}</div>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="category">
+        Select a Category:
+      </label>
+      <select type="text" formControlName="category">
+        <option value="" disabled selected>Select Category...</option>
+        <option value="chemicals">Chemicals</option>
+        <option value="consumables">Consumables</option>
+        <option value="instruments">Instruments</option>
+        <option value="glassware">Glassware</option>
+        <option value="filters">Filters</option>
+      </select>
+      <div *ngIf="invalidCategoryMsg" class="error">{{ invalidCategoryMsg }}</div>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="language">
+        Language
+      </label>
+      <select type="text" formControlName="language">
+        <option value="" disabled selected>Select Language...</option>
+        <option value="en">English</option>
+        <option value="bg">Bulgarian</option>
+        <option value="gr">Greek</option>
+        <option value="ro">Romanian</option>
+      </select>
+      <div *ngIf="invalidLanguageMsg" class="error">{{ invalidLanguageMsg }}</div>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="logoUrl">
+        Logo URL
+      </label>
+      <input type="text" formControlName="logoUrl" placeholder="Enter manufacturer logo" />
+      <div *ngIf="invalidLogoMsg" class="error">{{ invalidLogoMsg }}</div>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="catalogueUrl">
+        Catalogue URL
+      </label>
+      <input type="text" formControlName="catalogueUrl" placeholder="Enter link to catalogue" />
+      <div *ngIf="invalidCatalogueUrlMsg" class="error">{{ invalidCatalogueUrlMsg }}</div>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="brandWebSite">
+        Manufacturer web site
+      </label>
+      <input type="text" formControlName="brandWebSite" placeholder="Enter manufacturer web site" />
+      <div *ngIf="invalidWebSiteMsg" class="error">{{ invalidWebSiteMsg }}</div>
+    </div>
+    <div class="form-group">
+      <button type="submit" (click)="saveProduct()">Create Product</button>
+    </div>
+  </form>
+</section>
