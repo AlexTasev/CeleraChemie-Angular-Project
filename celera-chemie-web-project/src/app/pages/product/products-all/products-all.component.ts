@@ -27,7 +27,7 @@ export class ProductsAllComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.store.selectedLanguage$.pipe(takeUntil(this._ngDestroy$)).subscribe((lang) => {
-      this.selectedLang = lang;
+      this.selectedLang = lang || 'en';
       this.getAllProducts();
     });
   }

@@ -12,6 +12,7 @@ import { AuthGuard } from './@core/auth/auth.guard';
 import { AllUsersComponent } from './pages/user/all-users/all-users.component';
 import { CreateEditProductComponent } from './pages/product/create-edit-product/create-edit-product.component';
 import { ProductsAllComponent } from './pages/product/products-all/products-all.component';
+import { AdminGuard } from './@core/auth/admin.guard';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -19,12 +20,11 @@ const routes: Routes = [
   { path: 'certificates', component: CertificatesComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'user/profile', component: UserProfileComponent },
-  { path: 'users/all', component: AllUsersComponent },
-  { path: 'users/all', component: AllUsersComponent },
-  { path: 'product/create', component: CreateEditProductComponent },
-  { path: 'product/edit/:id', component: CreateEditProductComponent },
-  { path: 'products', component: ProductsAllComponent },
+  { path: 'user/profile', component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: 'users/all', component: AllUsersComponent, canActivate: [AdminGuard] },
+  { path: 'product/create', component: CreateEditProductComponent, canActivate: [AdminGuard] },
+  { path: 'product/edit/:id', component: CreateEditProductComponent, canActivate: [AdminGuard] },
+  { path: 'products', component: ProductsAllComponent, canActivate: [AuthGuard] },
   { path: '', component: HomePageComponent, pathMatch: 'full' },
 ];
 

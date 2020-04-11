@@ -16,6 +16,8 @@ import { Store } from './@core/services/store.service';
 import { CommonModule } from '@angular/common';
 import { APIInterceptor } from './@core/utils/api.interceptor';
 import { TokenInterceptor } from './@core/auth/token.interceptor';
+import { AuthGuard } from './@core/auth/auth.guard';
+import { AdminGuard } from './@core/auth/admin.guard';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -42,6 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     Store,
+    AuthGuard,
+    AdminGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: APIInterceptor,

@@ -3,13 +3,13 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private readonly router: Router, private authService: AuthService) {}
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const isAuthenticated = await this.authService.isAuthenticated().catch(() => false);
+    const isAdmin = await this.authService.isAdmin().catch(() => false);
 
-    if (isAuthenticated) {
+    if (isAdmin) {
       return true;
     }
 
