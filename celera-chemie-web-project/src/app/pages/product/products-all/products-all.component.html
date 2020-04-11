@@ -33,7 +33,11 @@
       <div class="brand-logo-url">
         <img [src]="product.logoUrl" alt="logo" />
       </div>
-      <div class="description">{{ product.description }}</div>
+      <div class="description">
+        <p *ngFor="let paragraph of product.description.split('\n')">
+          {{ paragraph }}
+        </p>
+      </div>
       <div class="btn-div">
         <a [attr.href]="product.catalogueUrl" target="_blank" rel="noopener noreferrer" class="button-user">
           Download Catalogue
@@ -41,14 +45,12 @@
         <a [attr.href]="product.brandWebSite" target="_blank" rel="noopener noreferrer" class="button-user">
           Visit Official Website
         </a>
-        <ng-template>
-          <!-- <a [routerLink]="['/product/edit/:id']" class="button-user" id="edit-btn">
-            Edit Product
-          </a> -->
-          <!-- <button (click)="deleteProduct()" class="button-user" id="delete-btn">
-            Delete Product
-          </button> -->
-        </ng-template>
+        <a [routerLink]="['/product/edit/' + product._id]" class="button-user" id="edit-btn">
+          Edit Product
+        </a>
+        <button (click)="deleteProduct()" class="button-user" id="delete-btn">
+          Delete Product
+        </button>
       </div>
     </section>
     <section *ngIf="!category" class="all-products-display">

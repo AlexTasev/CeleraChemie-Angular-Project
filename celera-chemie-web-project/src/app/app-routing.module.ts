@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'users/all', component: AllUsersComponent },
   { path: 'users/all', component: AllUsersComponent },
   { path: 'product/create', component: CreateEditProductComponent },
+  { path: 'product/edit/:id', component: CreateEditProductComponent },
   { path: 'products', component: ProductsAllComponent },
   { path: '', component: HomePageComponent, pathMatch: 'full' },
 ];

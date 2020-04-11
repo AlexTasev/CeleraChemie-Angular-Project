@@ -3,9 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/@core/services/product.service';
 import constants from '../../../@core/utils/constants';
+import { Product } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-create-edit-product',
@@ -13,10 +14,19 @@ import constants from '../../../@core/utils/constants';
   styleUrls: ['../../../common-styles/form.scss'],
 })
 export class CreateEditProductComponent implements OnInit, OnDestroy {
-  constructor(private fb: FormBuilder, private router: Router, private toastrService: ToastrService, private productService: ProductService) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastrService: ToastrService,
+    private productService: ProductService,
+  ) {}
 
   form: FormGroup;
+  product: Product;
+  productId = '';
   isEditMode = false;
+
   private _ngDestroy$ = new Subject<void>();
 
   // Validations
@@ -30,30 +40,44 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
   invalidWebSiteMsg = '';
 
   ngOnInit(): void {
-    this._initializeForm();
+    this.route.params.pipe(takeUntil(this._ngDestroy$)).subscribe((params) => {
+      this.productId = params.id;
+
+      if (this.productId) {
+        this.isEditMode = true;
+        this.getProduct();
+      } else {
+        this._initializeForm();
+      }
+    });
   }
 
   private _initializeForm() {
-    if (this.isEditMode) {
-      return;
-    } else {
-      this.form = this.fb.group({
-        manufacturer: ['', Validators.required],
-        description: ['', Validators.required],
-        category: ['', Validators.required],
-        language: ['', Validators.required],
-        logoUrl: ['', Validators.required],
-        catalogueUrl: [''],
-        brandWebSite: [''],
-      });
-    }
+    this.form = this.fb.group({
+      manufacturer: [this.product ? this.product.manufacturer : '', Validators.required],
+      description: [this.product ? this.product.description : '', Validators.required],
+      category: [this.product ? this.product.category : '', Validators.required],
+      language: [this.product ? this.product.language : '', Validators.required],
+      logoUrl: [this.product ? this.product.logoUrl : '', Validators.required],
+      catalogueUrl: [this.product ? this.product.catalogueUrl : ''],
+      brandWebSite: [this.product ? this.product.brandWebSite : ''],
+    });
   }
 
   saveProduct() {
     this._validateForm();
 
     if (this.isEditMode) {
-      return;
+      if (this.isFormValid && this.form.valid) {
+        this.productService
+          .updateProduct(this.productId, this.form.value)
+          .pipe(takeUntil(this._ngDestroy$))
+          .subscribe(() => {
+              this.toastrService.success('Product successfully updated');
+              this.router.navigate(['/products']);
+            }, () => this.toastrService.error('Unable to update product'),
+          );
+      }
     } else {
       if (this.isFormValid && this.form.valid) {
         this.productService
@@ -61,11 +85,22 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
           .pipe(takeUntil(this._ngDestroy$))
           .subscribe(() => {
               this.toastrService.success('Product successfully created');
-              this.router.navigate(['/']);
+              this.router.navigate(['/products']);
             }, () => this.toastrService.error('Unable to create product'),
           );
       }
     }
+  }
+
+  getProduct() {
+    this.productService
+      .getProductById(this.productId)
+      .pipe(takeUntil(this._ngDestroy$))
+      .subscribe((data: Product) => {
+          this.product = data;
+          this._initializeForm();
+        }, () => this.toastrService.error('Unable to get product info'),
+      );
   }
 
   private _validateForm() {
@@ -77,10 +112,10 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
       setTimeout(() => { this.isFormValid = true; this.invalidManufacturerMsg = ''; }, 3000);
     }
 
-    if (description.length < 2) {
+    if (description.length < 2 || !constants.specialCharsLongRegex.test(manufacturer)) {
       this.isFormValid = false;
       this.invalidDescriptionMsg = 'Description is not valid';
-      setTimeout(() => {  this.isFormValid = true;  this.invalidDescriptionMsg = ''; }, 3000);
+      setTimeout(() => { this.isFormValid = true; this.invalidDescriptionMsg = ''; }, 3000);
     }
 
     if (category === '') {
@@ -91,23 +126,23 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
 
     if (language === '') {
       this.isFormValid = false;
-      this.invalidLanguageMsg = 'Language is required.'; 
+      this.invalidLanguageMsg = 'Language is required.';
       setTimeout(() => { this.isFormValid = true; this.invalidLanguageMsg = ''; }, 3000);
     }
 
-    if (logoUrl && !logoUrl.startsWith('http') && logoUrl.length <= 14) {
+    if (logoUrl && !constants.urlRegex.test(logoUrl) && logoUrl.length <= 14) {
       this.isFormValid = false;
-      this.invalidLogoMsg = 'Invalid Logo URL'; 
+      this.invalidLogoMsg = 'Invalid Logo URL';
       setTimeout(() => { this.isFormValid = true; this.invalidLogoMsg = ''; }, 3000);
     }
 
-    if (catalogueUrl && !catalogueUrl.startsWith('http')) {
+    if (catalogueUrl && !constants.urlRegex.test(catalogueUrl)) {
       this.isFormValid = false;
       this.invalidCatalogueUrlMsg = 'Catalogue URL is not valid';
       setTimeout(() => { this.isFormValid = true; this.invalidCatalogueUrlMsg = ''; }, 3000);
     }
 
-    if (brandWebSite && !brandWebSite.startsWith('http')) {
+    if (brandWebSite && !constants.urlRegex.test(brandWebSite)) {
       this.isFormValid = false;
       this.invalidWebSiteMsg = 'Company web site URL is not valid';
       setTimeout(() => { this.isFormValid = true; this.invalidWebSiteMsg = ''; }, 3000);

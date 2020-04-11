@@ -19,6 +19,7 @@ import { AllUsersComponent } from './user/all-users/all-users.component';
 import { CreateEditProductComponent } from './product/create-edit-product/create-edit-product.component';
 import { ProductService } from '../@core/services/product.service';
 import { ProductsAllComponent } from './product/products-all/products-all.component';
+import { RouterModule } from '@angular/router';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -42,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

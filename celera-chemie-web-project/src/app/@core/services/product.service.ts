@@ -13,8 +13,16 @@ export class ProductService {
     return this.http.post('product', product);
   }
 
+  updateProduct(productId: string, product: Product): Observable<any> {
+    return this.http.put(`product/${productId}`, product);
+  }
+
   getAllProducts(lang: string) {
     return this.http.get(`product/all/${lang}`);
+  }
+
+  getProductById(productId: string): Observable<any> {
+    return this.http.get(`product/${productId}`);
   }
 
   getAllByCategory(category: string, lang: string) {
