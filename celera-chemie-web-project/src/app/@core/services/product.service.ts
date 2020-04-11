@@ -17,6 +17,10 @@ export class ProductService {
     return this.http.put(`product/${productId}`, product);
   }
 
+  deleteProduct(productId: string): Observable<any> {
+    return this.http.delete(`product/${productId}`);
+  }
+
   getAllProducts(lang: string) {
     return this.http.get(`product/all/${lang}`);
   }

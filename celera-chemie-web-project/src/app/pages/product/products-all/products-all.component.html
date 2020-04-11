@@ -48,7 +48,7 @@
         <a [routerLink]="['/product/edit/' + product._id]" class="button-user" id="edit-btn">
           Edit Product
         </a>
-        <button (click)="deleteProduct()" class="button-user" id="delete-btn">
+        <button (click)="deleteProduct(product._id)" class="button-user" id="delete-btn">
           Delete Product
         </button>
       </div>

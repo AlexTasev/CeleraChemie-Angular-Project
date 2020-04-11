@@ -1,5 +1,4 @@
-import { Component, OnInit, ɵɵNgOnChangesFeature, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from 'src/app/@core/services/product.service';
 import constants from '../../../@core/utils/constants';
@@ -14,7 +13,11 @@ import { Product } from 'src/app/models/product.model';
   styleUrls: ['./products-all.component.scss'],
 })
 export class ProductsAllComponent implements OnInit, OnDestroy {
-  constructor(private router: Router, private toastrService: ToastrService, private productService: ProductService, private store: Store) {}
+  constructor(
+    private toastrService: ToastrService,
+    private productService: ProductService,
+    private store: Store
+  ) {}
 
   products: Product[] = [];
   category: string;
@@ -66,7 +69,15 @@ export class ProductsAllComponent implements OnInit, OnDestroy {
     }
   }
 
-  deleteProduct() {}
+  deleteProduct(productId) {
+    this.productService.deleteProduct(productId)
+    .pipe(takeUntil(this._ngDestroy$))
+    .subscribe(() => {
+      this.toastrService.success('Product deleted successfully');
+      this.category = '';
+      this.getAllProducts();
+    }, () => 'Unable to delete product');
+  }
 
   ngOnDestroy() {
     this._ngDestroy$.next();
