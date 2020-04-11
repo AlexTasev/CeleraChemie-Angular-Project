@@ -68,18 +68,25 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
     this._validateForm();
 
     if (this.isEditMode) {
-      return;
+      if (this.isFormValid && this.form.valid) {
+        this.productService
+          .updateProduct(this.productId, this.form.value)
+          .pipe(takeUntil(this._ngDestroy$))
+          .subscribe(() => {
+              this.toastrService.success('Product successfully updated');
+              this.router.navigate(['/products']);
+            }, () => this.toastrService.error('Unable to update product'),
+          );
+      }
     } else {
       if (this.isFormValid && this.form.valid) {
         this.productService
           .createProduct(this.form.value)
           .pipe(takeUntil(this._ngDestroy$))
-          .subscribe(
-            () => {
+          .subscribe(() => {
               this.toastrService.success('Product successfully created');
-              this.router.navigate(['/']);
-            },
-            () => this.toastrService.error('Unable to create product'),
+              this.router.navigate(['/products']);
+            }, () => this.toastrService.error('Unable to create product'),
           );
       }
     }
@@ -89,12 +96,10 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
     this.productService
       .getProductById(this.productId)
       .pipe(takeUntil(this._ngDestroy$))
-      .subscribe(
-        (data: Product) => {
+      .subscribe((data: Product) => {
           this.product = data;
           this._initializeForm();
-        },
-        () => this.toastrService.error('Unable to get product info'),
+        }, () => this.toastrService.error('Unable to get product info'),
       );
   }
 
@@ -104,64 +109,43 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
     if (manufacturer.length < 2 || !constants.specialCharsShortRegex.test(manufacturer)) {
       this.isFormValid = false;
       this.invalidManufacturerMsg = `Manufacturer ${manufacturer} is not valid. Please provide correct manufacturer`;
-      setTimeout(() => {
-        this.isFormValid = true;
-        this.invalidManufacturerMsg = '';
-      }, 3000);
+      setTimeout(() => { this.isFormValid = true; this.invalidManufacturerMsg = ''; }, 3000);
     }
 
-    if (description.length < 2) {
+    if (description.length < 2 || !constants.specialCharsLongRegex.test(manufacturer)) {
       this.isFormValid = false;
       this.invalidDescriptionMsg = 'Description is not valid';
-      setTimeout(() => {
-        this.isFormValid = true;
-        this.invalidDescriptionMsg = '';
-      }, 3000);
+      setTimeout(() => { this.isFormValid = true; this.invalidDescriptionMsg = ''; }, 3000);
     }
 
     if (category === '') {
       this.isFormValid = false;
       this.invalidCategoryMsg = 'Category is required.';
-      setTimeout(() => {
-        this.isFormValid = true;
-        this.invalidCategoryMsg = '';
-      }, 3000);
+      setTimeout(() => { this.isFormValid = true; this.invalidCategoryMsg = ''; }, 3000);
     }
 
     if (language === '') {
       this.isFormValid = false;
       this.invalidLanguageMsg = 'Language is required.';
-      setTimeout(() => {
-        this.isFormValid = true;
-        this.invalidLanguageMsg = '';
-      }, 3000);
+      setTimeout(() => { this.isFormValid = true; this.invalidLanguageMsg = ''; }, 3000);
     }
 
-    if (logoUrl && !logoUrl.startsWith('http') && logoUrl.length <= 14) {
+    if (logoUrl && !constants.urlRegex.test(logoUrl) && logoUrl.length <= 14) {
       this.isFormValid = false;
       this.invalidLogoMsg = 'Invalid Logo URL';
-      setTimeout(() => {
-        this.isFormValid = true;
-        this.invalidLogoMsg = '';
-      }, 3000);
+      setTimeout(() => { this.isFormValid = true; this.invalidLogoMsg = ''; }, 3000);
     }
 
-    if (catalogueUrl && !catalogueUrl.startsWith('http')) {
+    if (catalogueUrl && !constants.urlRegex.test(catalogueUrl)) {
       this.isFormValid = false;
       this.invalidCatalogueUrlMsg = 'Catalogue URL is not valid';
-      setTimeout(() => {
-        this.isFormValid = true;
-        this.invalidCatalogueUrlMsg = '';
-      }, 3000);
+      setTimeout(() => { this.isFormValid = true; this.invalidCatalogueUrlMsg = ''; }, 3000);
     }
 
-    if (brandWebSite && !brandWebSite.startsWith('http')) {
+    if (brandWebSite && !constants.urlRegex.test(brandWebSite)) {
       this.isFormValid = false;
       this.invalidWebSiteMsg = 'Company web site URL is not valid';
-      setTimeout(() => {
-        this.isFormValid = true;
-        this.invalidWebSiteMsg = '';
-      }, 3000);
+      setTimeout(() => { this.isFormValid = true; this.invalidWebSiteMsg = ''; }, 3000);
     }
   }
 
