@@ -18,7 +18,7 @@ export class CertificatesComponent implements OnInit, OnDestroy {
     this.store.selectedLanguage$
       .pipe(takeUntil(this._ngDestroy$))
       .subscribe(country => {
-        this.getLocaleData(country);
+        this.getLocaleData(country || 'en');
       });
   }
 
