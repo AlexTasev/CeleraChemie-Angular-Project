@@ -17,6 +17,10 @@ export class ProductService {
     return this.http.get(`product/all/${lang}`);
   }
 
+  getProductById(productId: string): Observable<any> {
+    return this.http.get(`product/${productId}`);
+  }
+
   getAllByCategory(category: string, lang: string) {
     return this.http.get(`product/${category}/${lang}`);
   }

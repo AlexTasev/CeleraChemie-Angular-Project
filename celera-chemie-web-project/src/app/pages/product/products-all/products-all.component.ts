@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵɵNgOnChangesFeature, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ɵɵNgOnChangesFeature, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from 'src/app/@core/services/product.service';
@@ -13,7 +13,7 @@ import { Product } from 'src/app/models/product.model';
   templateUrl: './products-all.component.html',
   styleUrls: ['./products-all.component.scss'],
 })
-export class ProductsAllComponent implements OnInit {
+export class ProductsAllComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private toastrService: ToastrService, private productService: ProductService, private store: Store) {}
 
   products: Product[] = [];
