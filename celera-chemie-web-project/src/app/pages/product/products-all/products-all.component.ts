@@ -23,12 +23,17 @@ export class ProductsAllComponent implements OnInit, OnDestroy {
   category: string;
   selectedLang = 'en';
   backgroundImg = constants.images.defaultProductsImg;
+  isAdmin: boolean;
   private _ngDestroy$ = new Subject<void>();
 
   ngOnInit(): void {
     this.store.selectedLanguage$.pipe(takeUntil(this._ngDestroy$)).subscribe((lang) => {
       this.selectedLang = lang || 'en';
       this.getAllProducts();
+    });
+
+    this.store.userRole$.pipe(takeUntil(this._ngDestroy$)).subscribe((role) => {
+      role === 'Admin' ? (this.isAdmin = true) : (this.isAdmin = false);
     });
   }
 
