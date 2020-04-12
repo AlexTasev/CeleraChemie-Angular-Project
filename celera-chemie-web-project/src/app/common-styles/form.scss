@@ -15,7 +15,7 @@
   }
   form {
     display: grid;
-    max-width: 480px;
+    max-width: 35rem;
     margin: 0 auto;
     input[type='text'],
     input[type='email'],
@@ -27,22 +27,22 @@
       border-radius: 0.5rem;
       border: 1px solid wheat;
       color: black;
-      min-width: 430px;
-      max-width: 470px;
+      min-width: 33rem;
+      max-width: 35rem;
     }
     button {
-      min-width: 430px;
-      max-width: 470px;
+      min-width: 33rem;
+      max-width: 35rem;
       cursor: pointer;
       margin: 0 auto;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      margin-top: 30px;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      margin-top: 2rem;
       border-radius: 10px;
       border: 1px solid wheat;
       background: rgb(0, 101, 126);
       color: white;
-      font-size: 18px;
+      font-size: 1rem;
       &:hover {
         border: 1px solid #455859;
         background: rgb(0, 101, 0);
@@ -53,8 +53,8 @@
     select {
       padding: 10px;
       border-radius: 10px;
-       min-width: 430px;
-      max-width: 470px;
+      min-width: 33rem;
+      max-width: 35rem;
       margin-top: 1rem;
       margin-bottom: 1rem;
       border: 1px solid wheat;
@@ -65,8 +65,8 @@
       color: black;
     }
     textarea {
-      min-width: 430px;
-      max-width: 470px;
+      min-width: 33rem;
+      max-width: 35rem;
       margin-top: 1rem;
       margin-bottom: 1rem;
       padding: 0.5rem;
@@ -79,7 +79,7 @@
     .error {
       margin-bottom: 2rem;
       color: red;
-      max-width: 430px;
+      max-width: 33rem
     }
   }
 }
@@ -87,4 +87,5 @@ label {
   overflow: hidden;
   padding: 1rem 0 1rem 0;
   margin-top: 1rem;
+  font-size: 1rem;
 }

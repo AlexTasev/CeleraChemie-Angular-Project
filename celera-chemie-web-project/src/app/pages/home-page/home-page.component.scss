@@ -6,23 +6,21 @@
     margin-left: 1.5rem;
     color: rgba(194, 194, 194, 0.616);
     line-height: 1.6;
-    word-spacing: 5px;
+    word-spacing: 0.2rem;
     text-align: left;
-    padding-left: 20px;
+    font-size: 1rem;
+    padding-left: 1rem;
   }
 }
 
 .banner-image {
   max-width: 100%;
-  max-height: 550px;
+  max-height: 580px;
   overflow: hidden;
   img {
     width: 100%;
-    max-height: 550px;
+    max-height: 580px;
     position: center;
-    transition: opacity 1s ease-in-out;
-    -webkit-transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    -o-transition: opacity 1s ease-in-out;
+
   }
 }

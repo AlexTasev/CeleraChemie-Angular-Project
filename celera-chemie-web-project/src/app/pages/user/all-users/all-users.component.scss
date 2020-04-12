@@ -14,14 +14,16 @@
   margin-top: 1rem;
   div {
     overflow: hidden;
+    font-size: 1rem;
   }
   span {
     color: rgb(0, 101, 126);
+    font-size: 1rem;
   }
 }
 
 .button-user {
-  min-width: 250px;
+  min-width: 15rem;
   height: 2.5rem;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.623);
