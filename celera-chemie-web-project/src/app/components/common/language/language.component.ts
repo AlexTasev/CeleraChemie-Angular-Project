@@ -7,7 +7,7 @@ import { Store } from 'src/app/@core/services/store.service';
   templateUrl: './language.component.html',
   styleUrls: ['./language.component.scss'],
 })
-export class LanguageComponent implements OnInit {
+export class LanguageComponent {
   public languages: string[] = ['en', 'bg', 'gr', 'ro'];
   public currentLanguage = 'en';
 
@@ -24,8 +24,6 @@ export class LanguageComponent implements OnInit {
     }
     this.translate.use(this.currentLanguage);
   }
-
-  ngOnInit(): void {}
 
   changeLanguage(selectedLanguage: string) {
     localStorage.setItem('language', selectedLanguage);
