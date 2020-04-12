@@ -24,6 +24,8 @@ export default class Constants {
   public static readonly images = {
     celeraLogo: '../../../assets/images/celera-logo.png',
 
+    pageNotFoundImg: 'https://wallup.net/wp-content/uploads/2014/11/dark-brick-wall-748x421.jpg',
+
     aboutPageImg: 'https://celera-chemie.com/ro/wp-content/uploads/2019/02/KarlToellner_neu-216x300.png',
 
     certificateBgImg: 'http://celera-chemie.com/test/wp-content/uploads/2019/02/ISO9001-BG.jpg',

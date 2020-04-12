@@ -1,0 +1,56 @@
+.page {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.centered {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    text-align: center;
+    font-size: 6rem;
+    color: rgb(255, 0, 0);
+    margin-bottom: 0;
+  }
+  h3 {
+    text-align: center;
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+  span {
+    color: red;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  button {
+    font-size: 1rem;
+    min-width: 16rem;
+    height: 2.5rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.623);
+    background-color: rgba(0, 101, 126, 0.8);
+    word-spacing: 0.2rem;
+    border-radius: 1.5em;
+    font-size: 0.8rem;
+    margin: 1.5rem;
+    text-align: center;
+    line-height: 2.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(0, 101, 126);
+      color: white;
+      text-transform: bold;
+    }
+  }
+}

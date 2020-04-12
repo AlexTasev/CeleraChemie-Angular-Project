@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'product/create', component: CreateEditProductComponent, canActivate: [AdminGuard] },
   { path: 'product/edit/:id', component: CreateEditProductComponent, canActivate: [AdminGuard] },
   { path: 'products', component: ProductsAllComponent, canActivate: [AuthGuard] },
-  { path: '', component: HomePageComponent, pathMatch: 'full' }
+  { path: '', component: HomePageComponent, pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
