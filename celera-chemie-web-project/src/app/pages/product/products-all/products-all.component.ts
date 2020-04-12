@@ -75,13 +75,17 @@ export class ProductsAllComponent implements OnInit, OnDestroy {
   }
 
   deleteProduct(productId) {
-    this.productService.deleteProduct(productId)
-    .pipe(takeUntil(this._ngDestroy$))
-    .subscribe(() => {
-      this.toastrService.success('Product deleted successfully');
-      this.category = '';
-      this.getAllProducts();
-    }, () => 'Unable to delete product');
+    const confirmed = confirm('Are you sure you want to delete this product?');
+
+    if (confirmed) {
+      this.productService.deleteProduct(productId)
+        .pipe(takeUntil(this._ngDestroy$))
+        .subscribe(() => {
+          this.toastrService.success('Product deleted successfully');
+          this.category = '';
+          this.getAllProducts();
+      }, () => 'Unable to delete product');
+    }
   }
 
   ngOnDestroy() {

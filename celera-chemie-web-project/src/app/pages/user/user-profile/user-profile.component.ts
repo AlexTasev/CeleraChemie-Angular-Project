@@ -73,15 +73,19 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   deleteUser() {
-    this.userService
-      .delete(this.userId)
-      .pipe(takeUntil(this._ngDestroy$))
-      .subscribe(() => {
-          this.toastrService.success(`${this.form.value.email} user successfully deleted`, 'User deleted');
-          this.store.clear();
-          this.router.navigate(['/']);
-        }, () => this.toastrService.error('Unable to delete user'),
+    const confirmed = confirm('Are you sure you want to permanently delete your profile?');
+
+    if (confirmed) {
+      this.userService
+        .delete(this.userId)
+        .pipe(takeUntil(this._ngDestroy$))
+        .subscribe(() => {
+            this.toastrService.success(`${this.form.value.email} user successfully deleted`, 'User deleted');
+            this.store.clear();
+            this.router.navigate(['/']);
+          }, () => this.toastrService.error('Unable to delete user'),
       );
+    }
   }
 
   private _validateForm() {

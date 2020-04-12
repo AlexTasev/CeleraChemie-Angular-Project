@@ -34,17 +34,19 @@ export class AllUsersComponent implements OnInit, OnDestroy {
   }
 
   deleteUser(id) {
-    this.userService
-      .delete(id)
-      .pipe(takeUntil(this._ngDestroy$))
-      .subscribe(
-        () => {
-          this.toastrService.success('Selected user successfully removed');
-          this.users = [];
-          this.getAllUsers();
-        },
-        () => this.toastrService.error('Unable to remove user'),
+    const confirmed = confirm('Are you sure you want to delete this user?');
+
+    if (confirmed) {
+      this.userService
+        .delete(id)
+        .pipe(takeUntil(this._ngDestroy$))
+        .subscribe(() => {
+           this.toastrService.success('Selected user successfully removed');
+           this.users = [];
+           this.getAllUsers();
+          }, () => this.toastrService.error('Unable to remove user'),
       );
+    }
   }
 
   ngOnDestroy() {
