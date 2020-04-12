@@ -22,16 +22,17 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   private _ngDestroy$ = new Subject<void>();
+  imgSrc = constants.images.welcomeImg;
 
   // validations
   isFormValid = true;
 
-  invalidNameMessage = '';
-  invalidPhoneMsg = '';
+  invalidEmailMsg = '';
   invalidOrgMsg = '';
+  invalidNameMsg = '';
+  invalidPhoneMsg = '';
   invalidPasswordMsg = '';
   invalidRepeatPassMsg = '';
-  invalidEmailMessage = '';
 
   ngOnInit(): void {
     this._initializeForm();
@@ -69,8 +70,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     if (!constants.emailRegex.test(email)) {
       this.isFormValid = false;
-      this.invalidEmailMessage = `E-mail ${email} is not valid. Please provide correct e-mail`;
-      setTimeout(() => { this.isFormValid = true; this.invalidEmailMessage = ''; }, 3000);
+      this.invalidEmailMsg = `E-mail ${email} is not valid. Please provide correct e-mail`;
+      setTimeout(() => { this.isFormValid = true; this.invalidEmailMsg = ''; }, 3000);
     }
 
     if (organization.length < 2 || !constants.specialCharsShortRegex.test(organization)) {
@@ -81,16 +82,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     if (nameOfUser && !constants.specialCharsShortRegex.test(nameOfUser)) {
       this.isFormValid = false;
-      this.invalidNameMessage = `Name ${nameOfUser} is not valid. Please provide correct name`;
-      setTimeout(() => { this.isFormValid = true; this.invalidNameMessage = ''; }, 3000);
+      this.invalidNameMsg = `Name ${nameOfUser} is not valid. Please provide correct name`;
+      setTimeout(() => { this.isFormValid = true; this.invalidNameMsg = ''; }, 3000);
     }
 
-    if (password) {
-      if (password === '' || password.length < 8) {
-        this.isFormValid = false;
-        this.invalidPasswordMsg = 'Password must be at least 8 characters long';
-        setTimeout(() => { this.isFormValid = true; this.invalidPasswordMsg = ''; }, 3000);
-      }
+    if (password === '' || password.length < 8) {
+      this.isFormValid = false;
+      this.invalidPasswordMsg = 'Password must be at least 8 characters long';
+      setTimeout(() => { this.isFormValid = true; this.invalidPasswordMsg = ''; }, 3000);
     }
 
     if (password !== repeatPassword) {

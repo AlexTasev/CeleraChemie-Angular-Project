@@ -11,6 +11,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   images = constants.images.homePageImgs;
   imgSrc = constants.images.defaultHomeImg;
+  celeraLogo = constants.images.celeraLogo;
   interval: any;
 
   ngOnInit() {

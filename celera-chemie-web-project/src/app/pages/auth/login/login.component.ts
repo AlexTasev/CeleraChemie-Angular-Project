@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   private _ngDestroy$ = new Subject<void>();
+  imgSrc = constants.images.welcomeImg;
 
   // validations
   isFormValid = true;
@@ -50,15 +51,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authService
         .login(user)
         .pipe(takeUntil(this._ngDestroy$))
-        .subscribe(
-          (res) => {
+        .subscribe((res) => {
             this.store.token = res.token;
             this.store.userId = res.user.userId;
             res.user.roles.includes('Admin') ? this.store.role = 'Admin' : this.store.role = null;
             this.toastrService.success(`${this.form.value.email} logged in successfully`, 'User logged in');
             this.router.navigate(['/']);
-          },
-          (err) => this.toastrService.error(`${err.error.message}`, 'User login failed'),
+          }, (err) => this.toastrService.error(`${err.error.message}`, 'User login failed'),
         );
     }
   }
@@ -69,21 +68,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (!constants.emailRegex.test(email)) {
       this.isFormValid = false;
       this.invalidNameMessage = `E-mail ${email} is not valid. Please provide correct e-mail`;
-      setTimeout(() => {
-        this.isFormValid = true;
-        this.invalidNameMessage = '';
-      }, 3000);
+      setTimeout(() => {  this.isFormValid = true;  this.invalidNameMessage = ''; } , 3000);
     }
 
-    if (password) {
-      if (password === '' || password.length < 8) {
-        this.isFormValid = false;
-        this.invalidPasswordMsg = 'Password must be at least 8 characters long';
-        setTimeout(() => {
-          this.isFormValid = true;
-          this.invalidPasswordMsg = '';
-        }, 3000);
-      }
+    if (password === '' || password.length < 8) {
+      this.isFormValid = false;
+      this.invalidPasswordMsg = 'Password must be at least 8 characters long';
+      setTimeout(() => { this.isFormValid = true; this.invalidPasswordMsg = ''; }, 3000);
     }
   }
 

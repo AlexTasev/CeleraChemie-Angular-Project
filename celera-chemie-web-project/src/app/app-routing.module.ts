@@ -13,6 +13,7 @@ import { AllUsersComponent } from './pages/user/all-users/all-users.component';
 import { CreateEditProductComponent } from './pages/product/create-edit-product/create-edit-product.component';
 import { ProductsAllComponent } from './pages/product/products-all/products-all.component';
 import { AdminGuard } from './@core/auth/admin.guard';
+import { NotFoundComponent } from './components/common/not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -25,7 +26,7 @@ const routes: Routes = [
   { path: 'product/create', component: CreateEditProductComponent, canActivate: [AdminGuard] },
   { path: 'product/edit/:id', component: CreateEditProductComponent, canActivate: [AdminGuard] },
   { path: 'products', component: ProductsAllComponent, canActivate: [AuthGuard] },
-  { path: '', component: HomePageComponent, pathMatch: 'full' },
+  { path: '', component: HomePageComponent, pathMatch: 'full' }
 ];
 
 @NgModule({

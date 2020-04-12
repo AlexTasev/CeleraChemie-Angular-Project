@@ -26,7 +26,7 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
   product: Product;
   productId = '';
   isEditMode = false;
-
+  imgSrc = constants.images.createProductImg;
   private _ngDestroy$ = new Subject<void>();
 
   // Validations
@@ -75,7 +75,7 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
           .subscribe(() => {
               this.toastrService.success('Product successfully updated');
               this.router.navigate(['/products']);
-            }, () => this.toastrService.error('Unable to update product'),
+            }, (err) => this.toastrService.error(`${err.error.message}`, 'Unable to update product'),
           );
       }
     } else {
@@ -86,7 +86,7 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
           .subscribe(() => {
               this.toastrService.success('Product successfully created');
               this.router.navigate(['/products']);
-            }, () => this.toastrService.error('Unable to create product'),
+            }, (err) => this.toastrService.error(`${err.error.message}`, 'Unable to create product'),
           );
       }
     }
@@ -99,7 +99,7 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
       .subscribe((data: Product) => {
           this.product = data;
           this._initializeForm();
-        }, () => this.toastrService.error('Unable to get product info'),
+        }, (err) => this.toastrService.error(`${err.error.message}`, 'Unable to get product info'),
       );
   }
 
