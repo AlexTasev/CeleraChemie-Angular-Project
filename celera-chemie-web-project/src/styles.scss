@@ -53,6 +53,18 @@ html {
     }
 }
 
+@media (min-width: 2200px) {
+    html {
+        font-size: 23px;
+    }
+}
+
+@media (min-width: 3800px) {
+    html {
+        font-size: 40px;
+    }
+}
+
 body, input, textarea, select, option, button {
     font: inherit;
 }

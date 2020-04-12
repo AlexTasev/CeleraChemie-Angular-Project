@@ -53,7 +53,9 @@
         </button>
       </div>
     </section>
-    <section *ngIf="!category" class="all-products-display">
+  </section>
+  <section *ngIf="!category" class="all-products-display">
+    <section *ngFor="let product of products">
       <a class="brand-logo-url" target="_blank" rel="noopener noreferrer" [attr.href]="product.brandWebSite">
         <img [src]="product.logoUrl" alt="logo" />
       </a>

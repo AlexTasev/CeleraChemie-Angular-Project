@@ -9,9 +9,9 @@ nav {
 }
 
 .logo {
-  height: 50px;
+  height: 2rem;
   width: auto;
-  margin: 10px;
+  margin: 0.5rem;
   background: black;
 }
 
@@ -22,15 +22,15 @@ nav {
 
 .nav-link-right {
   float: left;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
   text-transform: uppercase;
   color: rgba(236, 236, 236, 0.7);
   &:hover,
   &:active {
-    padding: 1px 0;
     color: white;
-    word-spacing: 0;
     text-decoration: none;
     border-bottom: 2px solid transparent;
     -webkit-transition: border-bottom 0.2s;
