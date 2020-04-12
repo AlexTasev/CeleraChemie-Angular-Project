@@ -45,10 +45,10 @@
         <a [attr.href]="product.brandWebSite" target="_blank" rel="noopener noreferrer" class="button-user">
           Visit Official Website
         </a>
-        <a [routerLink]="['/product/edit/' + product._id]" class="button-user" id="edit-btn">
+        <a *ngIf="isAdmin" [routerLink]="['/product/edit/' + product._id]" class="button-user" id="edit-btn">
           Edit Product
         </a>
-        <button (click)="deleteProduct(product._id)" class="button-user" id="delete-btn">
+        <button *ngIf="isAdmin" (click)="deleteProduct(product._id)" class="button-user" id="delete-btn">
           Delete Product
         </button>
       </div>
