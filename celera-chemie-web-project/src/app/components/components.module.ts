@@ -8,13 +8,14 @@ import { LanguageComponent } from '../components/common/language/language.compon
 import { HeaderComponent } from '../components/common/header/header.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NotFoundComponent } from './common/not-found/not-found.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [FooterComponent, LanguageComponent, HeaderComponent],
+  declarations: [FooterComponent, LanguageComponent, HeaderComponent, NotFoundComponent],
   imports: [
     CommonModule,
     HttpClientModule,

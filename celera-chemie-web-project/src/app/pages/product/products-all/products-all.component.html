@@ -61,4 +61,9 @@
       </a>
     </section>
   </section>
+  <section *ngIf="!products.length" class="products-display">
+    <div class="description">
+      <p style="text-align: center;">{{ 'products.none' | translate }}</p>
+    </div>
+  </section>
 </section>

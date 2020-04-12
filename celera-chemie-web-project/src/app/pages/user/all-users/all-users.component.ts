@@ -4,7 +4,6 @@ import { UserService } from 'src/app/@core/services/user.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-users',
@@ -44,7 +43,7 @@ export class AllUsersComponent implements OnInit, OnDestroy {
            this.toastrService.success('Selected user successfully removed');
            this.users = [];
            this.getAllUsers();
-          }, () => this.toastrService.error('Unable to remove user'),
+          }, (err) => this.toastrService.error(`${err.error.message}`, 'Unable to remove user'),
       );
     }
   }

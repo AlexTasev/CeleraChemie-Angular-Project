@@ -1,7 +1,4 @@
-<section
-  class="form"
-  style="background-image: url('https://am3pap003files.storage.live.com/y4pWc1itk9AtD-baxMeucFyjjsCeNSCSAu2GgMeLlNG4C3NffMR1WFF6iMpnSiYmBfEpu2FsmuUXaIqkTWUNYxcHpME1xVGOPktR0MEIUcN1IUngrn4xFfn92pBWJmRXcPLqMmNIDG2YJYC-4qAcKXr1UI6zEFXpiz9BPvRHlbO6oDnXYC2KfZMjfULnKvqzggL/welcome.png?psid=1&width=484&height=209');"
->
+<section class="form" style="background-image: url({{imgSrc}});">
   <h1>Register</h1>
   <form [formGroup]="form" *ngIf="form">
     <div class="form-group">
@@ -9,41 +6,42 @@
         E-mail
       </label>
       <input type="email" formControlName="email" id="emailLogin" placeholder="Enter your e-mail" />
-      <div *ngIf="invalidEmailMessage" class="error">{{invalidEmailMessage}}</div>
+      <div *ngIf="invalidEmailMsg" class="error">{{ invalidEmailMsg }}</div>
     </div>
     <div class="form-group">
       <label class="form-control-label" for="organization">
         Organization
       </label>
       <input type="text" formControlName="organization" id="organizationRegister" placeholder="Enter your Organization" />
-      <div *ngIf="invalidOrgMsg" class="error">{{invalidOrgMsg}}</div>
+      <div *ngIf="invalidOrgMsg" class="error">{{ invalidOrgMsg }}</div>
     </div>
     <div class="form-group">
       <label class="form-control-label" for="nameOfUser">
         Name
       </label>
       <input type="text" formControlName="nameOfUser" id="nameRegister" placeholder="Enter your name (optional)" />
+      <div *ngIf="invalidNameMsg" class="error">{{ invalidNameMsg }}</div>
     </div>
     <div class="form-group">
       <label class="form-control-label" for="phoneNumber">
         Phone Number
       </label>
-      <input type="text" formControlName="phoneNumber" id="phoneNumberRegister"  placeholder="Enter your phone number (optional)"/>
-      <div *ngIf="invalidPhoneMsg" class="error">{{invalidPhoneMsg}}</div>
+      <input type="text" formControlName="phoneNumber" id="phoneNumberRegister" placeholder="Enter your phone number (optional)" />
+      <div *ngIf="invalidPhoneMsg" class="error">{{ invalidPhoneMsg }}</div>
     </div>
     <div class="form-group">
       <label class="form-control-label" for="password">
         Password
       </label>
       <input type="password" formControlName="password" id="passwordLogin" placeholder="Enter a password" />
-      <div *ngIf="invalidPasswordMsg" class="error">{{invalidPasswordMsg}}</div>
+      <div *ngIf="invalidPasswordMsg" class="error">{{ invalidPasswordMsg }}</div>
     </div>
     <div class="form-group">
       <label class="form-control-label" for="repeatPassword">
         Repeat Password
       </label>
-      <input type="password" formControlName="repeatPassword" id="passwordRegister"  placeholder="Repeat password"/>
-      <div *ngIf="invalidRepeatPassMsg" class="error">{{invalidRepeatPassMsg}}</div>
+      <input type="password" formControlName="repeatPassword" id="passwordRegister" placeholder="Repeat password" />
+      <div *ngIf="invalidRepeatPassMsg" class="error">{{ invalidRepeatPassMsg }}</div>
     </div>
     <div class="form-group">
       <button type="submit" (click)="registerUser()">Register</button>

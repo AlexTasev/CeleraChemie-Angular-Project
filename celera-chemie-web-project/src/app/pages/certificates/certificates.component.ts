@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from 'src/app/@core/services/store.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import constants from '../../@core/utils/constants';
 
 @Component({
   selector: 'app-certificates',
@@ -15,38 +16,28 @@ export class CertificatesComponent implements OnInit, OnDestroy {
   imgSrc: string;
 
   ngOnInit(): void {
-    this.store.selectedLanguage$
-      .pipe(takeUntil(this._ngDestroy$))
-      .subscribe(country => {
-        this.getLocaleData(country || 'en');
-      });
+    this.store.selectedLanguage$.pipe(takeUntil(this._ngDestroy$)).subscribe((country) => {
+      this.getLocaleData(country || 'en');
+    });
   }
 
   getLocaleData(country: string) {
     switch (country) {
       case 'bg':
-        this.imgSrc =
-          'http://celera-chemie.com/test/wp-content/uploads/2019/02/ISO9001-BG.jpg';
-        this.pdfLocation =
-          'http://celera-chemie.com/bg/wp-content/uploads/2019/02/ISO9001-BG.pdf';
+        this.imgSrc = constants.images.certificateBgImg;
+        this.pdfLocation = constants.images.certificateBgDoc;
         break;
       case 'ro':
-        this.imgSrc =
-          'http://celera-chemie.com/test/wp-content/uploads/2019/02/iso-celera-chemie-RO.jpg';
-        this.pdfLocation =
-          'https://celera-chemie.com/cy/wp-content/uploads/2019/02/iso-celera-chemie-RO.pdf';
+        this.imgSrc = constants.images.certificateRoImg;
+        this.pdfLocation = constants.images.certificateRoDoc;
         break;
       case 'gr':
-        this.imgSrc =
-          'http://celera-chemie.com/test/wp-content/uploads/2019/02/CERTIFICATE-ISO-9001-CELERA-CY-GR.jpg';
-        this.pdfLocation =
-          'https://celera-chemie.com/cy/wp-content/uploads/2019/02/CERTIFICATE-ISO-9001-CELERA-CY-GR.pdf';
+        this.imgSrc = constants.images.certificateGrImg;
+        this.pdfLocation = constants.images.certificateGrDoc;
         break;
       case 'en':
-        this.imgSrc =
-          'http://celera-chemie.com/test/wp-content/uploads/2019/02/ISO9001-BG-EN.jpg';
-        this.pdfLocation =
-          'http://celera-chemie.com/bg/wp-content/uploads/2019/02/ISO9001-EN.pdf';
+        this.imgSrc = constants.images.certificateEnImg;
+        this.pdfLocation = constants.images.certificateEnDoc;
         break;
       default:
         this.imgSrc = '';
