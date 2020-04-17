@@ -1,5 +1,5 @@
 <section class="form" style="background-image: url({{imgSrc}});">
-  <h1 *ngIf="isEditMode; else isCreateMode">Edit Product</h1>
+  <h1 *ngIf="productId; else isCreateMode">Edit Product</h1>
   <ng-template #isCreateMode><h1>Create Product</h1></ng-template>
   <form [formGroup]="form" *ngIf="form">
     <div class="form-group">

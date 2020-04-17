@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/@core/services/user.service';
 import { Store } from 'src/app/@core/services/store.service';
 import constants from '../../../@core/utils/constants';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -39,7 +40,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.getCurrentUser();
   }
 
-  initializeForm(user) {
+  initializeForm(user: User) {
     this.form = this.fb.group({
       email: [user.email, Validators.required],
       organization: [user.organization, Validators.required],
@@ -53,7 +54,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.userService
       .getById(this.userId)
       .pipe(takeUntil(this._ngDestroy$))
-      .subscribe((user) => this.initializeForm(user));
+      .subscribe((user: User) => this.initializeForm(user));
   }
 
   updateUser() {
