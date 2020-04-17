@@ -25,7 +25,6 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
   form: FormGroup;
   product: Product;
   productId = '';
-  isEditMode = false;
   imgSrc = constants.images.createProductImg;
   private _ngDestroy$ = new Subject<void>();
 
@@ -44,7 +43,6 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
       this.productId = params.id;
 
       if (this.productId) {
-        this.isEditMode = true;
         this.getProduct();
       } else {
         this._initializeForm();
@@ -67,28 +65,15 @@ export class CreateEditProductComponent implements OnInit, OnDestroy {
   saveProduct() {
     this._validateForm();
 
-    if (this.isEditMode) {
-      if (this.isFormValid && this.form.valid) {
-        this.productService
-          .updateProduct(this.productId, this.form.value)
-          .pipe(takeUntil(this._ngDestroy$))
-          .subscribe(() => {
-              this.toastrService.success('Product successfully updated');
-              this.router.navigate(['/products']);
-            }, (err) => this.toastrService.error(`${err.error.message}`, 'Unable to update product'),
-          );
-      }
-    } else {
-      if (this.isFormValid && this.form.valid) {
-        this.productService
-          .createProduct(this.form.value)
-          .pipe(takeUntil(this._ngDestroy$))
-          .subscribe(() => {
-              this.toastrService.success('Product successfully created');
-              this.router.navigate(['/products']);
-            }, (err) => this.toastrService.error(`${err.error.message}`, 'Unable to create product'),
-          );
-      }
+    if (this.isFormValid && this.form.valid) {
+      this.productService
+        .createOrUpdateProduct(this.productId, this.form.value)
+        .pipe(takeUntil(this._ngDestroy$))
+        .subscribe(() => {
+            this.toastrService.success('Product successfully updated');
+            this.router.navigate(['/products']);
+          }, (err) => this.toastrService.error(`${err.error.message}`, 'Unable to update product'),
+        );
     }
   }
 

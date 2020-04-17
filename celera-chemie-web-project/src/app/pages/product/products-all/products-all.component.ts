@@ -53,25 +53,14 @@ export class ProductsAllComponent implements OnInit, OnDestroy {
   }
 
   getAllProducts() {
-    if (this.category) {
-      this.products = [];
-      this.productService
-        .getAllByCategory(this.category, this.selectedLang)
-        .pipe(takeUntil(this._ngDestroy$))
-        .subscribe((products) => {
-            Object.assign(this.products, products);
-          }, () => this.toastrService.error('Unable to get products'),
-        );
-    } else {
-      this.products = [];
-      this.productService
-        .getAllProducts(this.selectedLang)
-        .pipe(takeUntil(this._ngDestroy$))
-        .subscribe((products) => {
-            Object.assign(this.products, products);
-          }, () => this.toastrService.error('Unable to get products'),
-        );
-    }
+    this.products = [];
+    this.productService
+      .getAllProducts(this.category, this.selectedLang)
+      .pipe(takeUntil(this._ngDestroy$))
+      .subscribe((products) => {
+          Object.assign(this.products, products);
+        }, () => this.toastrService.error('Unable to get products'),
+      );
   }
 
   deleteProduct(productId) {
