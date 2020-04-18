@@ -24,7 +24,7 @@ When the project is cloned or downloaded, type in the terminal the following in 
 npm / yarn install
 ```
 ## Run the web server
-The app uses nodemon. To run the web server type in terminal from Server-Celera-Chemie the following:
+To run the web server type in terminal from Server-Celera-Chemie the following:
 ```
 node index
 ```
